@@ -19,7 +19,41 @@ const NoteState = (props)=>{
         "tag": "motivation",
         "date": "2021-11-19T08:13:24.107Z",
         "__v": 0
-      }]
+      },
+      {
+        "_id": "61975ca45c37041c77984df8",
+        "user": "61968cd5225a932d9e570aab",
+        "title": "Title 2",
+        "description": "do untill you die",
+        "tag": "motivation",
+        "date": "2021-11-19T08:13:24.107Z",
+        "__v": 0
+      },{
+        "_id": "61975ca45c37041c77984df8",
+        "user": "61968cd5225a932d9e570aab",
+        "title": "Title 2",
+        "description": "do untill you die",
+        "tag": "motivation",
+        "date": "2021-11-19T08:13:24.107Z",
+        "__v": 0
+      },{
+        "_id": "61975ca45c37041c77984df8",
+        "user": "61968cd5225a932d9e570aab",
+        "title": "Title 2",
+        "description": "do untill you die",
+        "tag": "motivation",
+        "date": "2021-11-19T08:13:24.107Z",
+        "__v": 0
+      },{
+        "_id": "61975ca45c37041c77984df8",
+        "user": "61968cd5225a932d9e570aab",
+        "title": "Title 2",
+        "description": "do untill you die",
+        "tag": "motivation",
+        "date": "2021-11-19T08:13:24.107Z",
+        "__v": 0
+      }
+    ]
       const [notes,setNotes]= useState(noteInitial)
 return(
     <NoteContext.Provider value={{notes,setNotes}}>
