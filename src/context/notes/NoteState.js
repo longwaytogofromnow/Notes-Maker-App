@@ -34,7 +34,7 @@ const NoteState = (props) => {
       body: JSON.stringify({title, description, tag})
     });
 
-    // const json = await response.json();
+    const json = await response.json();
     const note = {
       "_id": "61975ca45c376041c77984df8",
       "user": "61968cd5225a932d9e570aab",
@@ -47,7 +47,18 @@ const NoteState = (props) => {
     setNotes(notes.concat(note))
   }
   // Delete a note
-  const deleteNote = (id) => {
+  const deleteNote = async (id) => {
+     // API CALL
+     const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE5NjhjZDUyMjVhOTMyZDllNTcwYWFiIn0sImlhdCI6MTYzNzI1NjcyMH0.Ce5aIzdMAdZU7YfCcgtDIQBQyCzcE-H7bXPlEJ1lsNw"
+      }
+    });
+
+    const json = await response.json();
+
     const newNote = notes.filter((note) => { return note._id !== id })
     setNotes(newNote);
   }
@@ -56,26 +67,28 @@ const NoteState = (props) => {
   const editNote = async (id, title, description, tag) => {
 
     // API CALL
-    const response = await fetch(`${host}/api/notes/updatenote${id}`, {
-      method: 'POST',
+    const response = await fetch(`${host}/api/notes/updatenote/${id}`,{
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE5NjhjZDUyMjVhOTMyZDllNTcwYWFiIn0sImlhdCI6MTYzNzI1NjcyMH0.Ce5aIzdMAdZU7YfCcgtDIQBQyCzcE-H7bXPlEJ1lsNw"
       },
-      body: JSON.stringify(title, description, tag)
+      body: JSON.stringify({title, description, tag})
     });
 
     const json = await response.json();
-
-    for (let index = 0; index < notes.length; index++) {
-      const element = notes[index];
+    // logic to edit in client
+    let newNotes= JSON.parse(JSON.stringify(notes));
+    for (let index = 0; index < newNotes.length; index++) {
+      const element = newNotes[index];
       if (element._id === id) {
-        element.title = title;
-        element.description = description;
-        element.tag = tag;
+        newNotes[index].title = title;
+        newNotes[index].description = description;
+        newNotes[index].tag = tag;
+        break;
       }
-
     }
+    setNotes(newNotes)
 
   }
 

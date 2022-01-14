@@ -1,7 +1,7 @@
+import Notes from "./Notes"
 
-import { Notes } from './Notes'
 
-export const Home = () => {
+const Home = () => {
     
     return (
         <div>
